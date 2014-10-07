@@ -1,0 +1,18 @@
+<:
+include('phpdbg_bootstrap.php');
+if (function_exists('readline_completion_function')) {
+    readline_completion_function(function(){
+        return array_merge(
+            get_defined_functions()['user'],
+            array_keys(get_defined_constants())
+        );
+    });
+}
+
+function newpage($method, $uri) {
+  $_SERVER['REQUEST_METHOD'] = $method;
+  $_SERVER['REQUEST_URI'] = $uri;
+}
+
+:>
+R newpage
